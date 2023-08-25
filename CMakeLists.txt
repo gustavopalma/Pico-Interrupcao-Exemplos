@@ -15,7 +15,7 @@ set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 
 # Configura a placa alvo da compilação
-set(PICO_BOARD pico)
+set(PICO_BOARD pico_w)
 
 # Inicializa o SDK da raspberry pi pico 
 pico_sdk_init()
@@ -27,7 +27,7 @@ add_executable(interrupt
         )
 
 # Define as bibliotecas necessárias para que o programa seja linkado
-target_link_libraries(interrupt pico_stdlib)
+target_link_libraries(interrupt pico_cyw43_arch_none pico_stdlib)
 
 #configura a saída padrão como sendo uma 'Serial-Over USB'
 pico_enable_stdio_usb(interrupt 1)
