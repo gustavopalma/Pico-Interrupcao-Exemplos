@@ -30,8 +30,14 @@ add_executable(interrupt
 target_link_libraries(interrupt pico_stdlib)
 
 #configura a saída padrão como sendo uma 'Serial-Over USB'
-pico_enable_stdio_usb(interrupt 1)
-pico_enable_stdio_uart(interrupt 0)
+if (SIMULADOR STREQUAL "y")
+   pico_enable_stdio_usb(interrupt 0)
+   pico_enable_stdio_uart(interrupt 1)
+   message("Usando os pinos da UART como stdout")
+else ()
+   pico_enable_stdio_usb(interrupt 1)
+   pico_enable_stdio_uart(interrupt 0)
+endif ()
 
 # Cria os arquivos binários no forma uf2 após a compilação
 pico_add_extra_outputs(interrupt)

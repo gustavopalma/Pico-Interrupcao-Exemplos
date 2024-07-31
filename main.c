@@ -13,13 +13,11 @@ void gpio_callback(uint gpio, uint32_t events) {
     printf("GPIO %d %s\n", gpio, event_str);
 }
 
-
-
 int main() {
     stdio_init_all();
     sleep_ms(5000);
     printf("Hello GPIO IRQ\n");
-    for (int i = 0; i < 4; i++){
+    for (int i = 2; i < 6; i++){
         gpio_init(i);
         gpio_set_dir(i, GPIO_IN);
         gpio_set_pulls (i,true,false); 
